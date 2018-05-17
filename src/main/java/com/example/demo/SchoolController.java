@@ -20,8 +20,13 @@ public class SchoolController {
         return school.getPupilsList();
     }
 
+    @RequestMapping(method=RequestMethod.POST, value="/pupils")
+    public void addPupil(@RequestBody Pupil pupil) {
+        
+    }
+
 //    @RequestMapping("/pupils/{id}")
 //    public Pupil getPupil(@PathVariable String id) {
-//        
+//
 //    }
 }
