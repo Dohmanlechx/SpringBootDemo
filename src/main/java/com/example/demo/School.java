@@ -40,7 +40,7 @@ public class School {
 
         Pupil p2 = new Pupil(101, "Emma", "Flicka", 11);
         p2.addGrade(svG);
-        p2.addGrade(maIG);
+        p2.addGrade(maG);
         p2.addGrade(engMVG);
         pupilsList.add(p2);
 
@@ -49,6 +49,12 @@ public class School {
         p3.addGrade(maIG);
         p3.addGrade(engIG);
         pupilsList.add(p3);
+
+        Pupil p4 = new Pupil(103, "Kalle", "Pojke", 10);
+        p4.addGrade(svVG);
+        p4.addGrade(maMVG);
+        p4.addGrade(engVG);
+        pupilsList.add(p4);
 
     }
 
