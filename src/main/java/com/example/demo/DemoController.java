@@ -12,7 +12,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class DemoController {
 
     @ResponseBody
-    @RequestMapping(method = GET , produces = "application/json" )
+    @RequestMapping(method = GET, produces = "application/json")
     public String demo() {
         return "{ hello : world }";
     }
