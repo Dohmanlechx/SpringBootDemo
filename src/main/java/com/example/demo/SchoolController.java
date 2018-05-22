@@ -7,16 +7,22 @@ import java.util.List;
 @RestController
 public class SchoolController {
 
-    //    private static final String template = "Hello, %s!";
     School school = new School();
 
+    // GET
     @RequestMapping(value = "/pupils", method = RequestMethod.GET)
-//    @ResponseBody
     public List<Pupil> pupils(@RequestParam(value = "searchpupil", defaultValue = "") String searchPupil) {
 
         return school.getSearchedPupilsList(searchPupil);
     }
 
+    // GET BY ID
+    @RequestMapping(value = "/pupils/{id}", method = RequestMethod.GET)
+    public Pupil findPupil(@PathVariable("id") int pupilId) {
+        return school.findPupil(pupilId);
+    }
+
+    // POST
     @RequestMapping(value = "/pupils", method = RequestMethod.POST)
     public Pupil postPupil(@RequestBody Pupil pupil) {
 
@@ -24,9 +30,11 @@ public class SchoolController {
         return pupil;
     }
 
-    @RequestMapping(value = "/pupils/{id}/delete", method = RequestMethod.DELETE)
+    // DELETE
+    @RequestMapping(value = "/pupils/{id}", method = RequestMethod.DELETE)
     public void deletePupil(@PathVariable("id") int pupilId) {
         school.deletePupil(pupilId);
     }
+
 
 }

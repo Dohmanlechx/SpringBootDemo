@@ -41,12 +41,22 @@ public class School {
 
         ArrayList<Pupil> searchedPupil = new ArrayList<>();
         for (Pupil pupil : pupilsList) {
-            if(pupil.getName().toLowerCase().contains(searchPupil.toLowerCase())) {
+            if (pupil.getName().toLowerCase().contains(searchPupil.toLowerCase())) {
                 searchedPupil.add(pupil);
             }
         }
 
         return searchedPupil;
+    }
+
+    public Pupil findPupil(int pupilId) {
+        for (Pupil pupil : pupilsList) {
+            if (pupil.getId() == pupilId) {
+                return pupil;
+            }
+        }
+
+        return null;
     }
 
     public void addPupil(Pupil newPupil) {
