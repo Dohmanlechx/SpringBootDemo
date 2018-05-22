@@ -6,6 +6,7 @@ import java.util.List;
 public class School {
 
     private static List<Pupil> pupilsList = new ArrayList<>();
+
     // Pre-written codes for the grades
 
     // Svenska
@@ -55,6 +56,12 @@ public class School {
         p4.addGrade(maMVG);
         p4.addGrade(engVG);
         pupilsList.add(p4);
+
+        Pupil p5 = new Pupil(104, "Kristina", "Flicka", 9);
+        p5.addGrade(svG);
+        p5.addGrade(maMVG);
+        p5.addGrade(engIG);
+        pupilsList.add(p5);
 
     }
 
