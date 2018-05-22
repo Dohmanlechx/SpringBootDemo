@@ -35,6 +35,4 @@ public class SchoolController {
     public void deletePupil(@PathVariable("id") int pupilId) {
         school.deletePupil(pupilId);
     }
-
-
 }

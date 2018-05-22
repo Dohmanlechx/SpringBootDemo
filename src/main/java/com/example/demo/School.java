@@ -74,7 +74,7 @@ public class School {
     public void addMockData() {
 
         // List of pupils
-
+        
         Pupil p1 = new Pupil(100, "David", "Pojke", 12);
         p1.addGrade(svMVG);
         p1.addGrade(maVG);
