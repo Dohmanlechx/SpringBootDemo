@@ -12,6 +12,10 @@ public class School {
         addMockData();
     }
 
+    public List<Pupil> getPupilsList() {
+        return pupilsList;
+    }
+
     // Pre-written codes for the grades
 
     // Svenska
@@ -43,6 +47,10 @@ public class School {
         }
 
         return searchedPupil;
+    }
+
+    public void addPupil(Pupil newPupil) {
+        pupilsList.add(newPupil);
     }
 
     public void addMockData() {

@@ -4,6 +4,9 @@ public class Grade {
 
     private String subject, grade;
 
+    public Grade() {
+    }
+
     public Grade(String subject, String grade) {
         this.subject = subject;
         this.grade = grade;
