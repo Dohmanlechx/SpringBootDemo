@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +78,7 @@ public class School {
     public void addMockData() {
 
         // List of pupils
-        
+
         Pupil p1 = new Pupil(100, "David", "Pojke", 12);
         p1.addGrade(svMVG);
         p1.addGrade(maVG);
@@ -105,5 +109,24 @@ public class School {
         p5.addGrade(engIG);
         pupilsList.add(p5);
 
+        // Creating a text file for the permanent storing
+        String fileName = "storage.txt";
+
+//        StringBuilder pupilInfo = new StringBuilder();
+//
+//        for (Pupil pupil : pupilsList) {
+//            pupilInfo.append("id: " + pupil.getId()).append("\n name: ").append(pupil.getName())
+//                            .append("\n gender: ").append(pupil.getGender()).append("\ n age: ")
+//                            .append(String.valueOf(pupil.getAge())).append("\n ");
+//        }
+
+
+        try {
+            PrintWriter writer = new PrintWriter(fileName);
+            writer.println(pupilsList.toString());
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

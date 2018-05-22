@@ -51,4 +51,10 @@ public class Pupil {
     public void addGrade(Grade grade) {
         grades.add(grade);
     }
+
+    public String convertToJson() {
+
+    }
 }
+
+
