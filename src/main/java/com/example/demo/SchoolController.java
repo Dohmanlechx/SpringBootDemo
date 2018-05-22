@@ -14,7 +14,7 @@ public class SchoolController {
 //    @ResponseBody
     public List<Pupil> pupils(@RequestParam(value = "searchpupil", defaultValue = "") String searchPupil) {
 
-        return school.getPupilsList(searchPupil);
+        return school.getSearchedPupilsList(searchPupil);
     }
 
     @RequestMapping(value = "/pupils", method = RequestMethod.POST)
@@ -24,10 +24,9 @@ public class SchoolController {
         return pupil;
     }
 
-//    @RequestMapping(value = "/pupils/{id}", method = RequestMethod.DELETE)
-//    public Pupil deletePupil(@PathVariable String pupilId) {
-//        school.deletePupil(pupilId);
-//        return school.getPupilsList();
-//    }
+    @RequestMapping(value = "/pupils/{id}/delete", method = RequestMethod.DELETE)
+    public void deletePupil(@PathVariable("id") int pupilId) {
+        school.deletePupil(pupilId);
+    }
 
 }

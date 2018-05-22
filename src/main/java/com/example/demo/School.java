@@ -34,7 +34,7 @@ public class School {
     private static final Grade engVG = new Grade("Engelska", "VG");
     private static final Grade engMVG = new Grade("Engelska", "MVG");
 
-    public List<Pupil> getPupilsList(String searchPupil) {
+    public List<Pupil> getSearchedPupilsList(String searchPupil) {
         if (searchPupil == "") {
             return pupilsList;
         }
@@ -51,6 +51,14 @@ public class School {
 
     public void addPupil(Pupil newPupil) {
         pupilsList.add(newPupil);
+    }
+
+    public void deletePupil(int pupilId) {
+        for (Pupil pupil : pupilsList) {
+            if (pupil.getId() == pupilId) {
+                pupilsList.remove(pupil);
+            }
+        }
     }
 
     public void addMockData() {
