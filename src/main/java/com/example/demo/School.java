@@ -5,7 +5,12 @@ import java.util.List;
 
 public class School {
 
-    private static List<Pupil> pupilsList = new ArrayList<>();
+    private List<Pupil> pupilsList;
+
+    public School() {
+        pupilsList = new ArrayList<>();
+        addMockData();
+    }
 
     // Pre-written codes for the grades
 
@@ -25,8 +30,19 @@ public class School {
     private static final Grade engVG = new Grade("Engelska", "VG");
     private static final Grade engMVG = new Grade("Engelska", "MVG");
 
-    public List<Pupil> getPupilsList() {
-        return pupilsList;
+    public List<Pupil> getPupilsList(String searchPupil) {
+        if (searchPupil == "") {
+            return pupilsList;
+        }
+
+        ArrayList<Pupil> searchedPupil = new ArrayList<>();
+        for (Pupil pupil : pupilsList) {
+            if(pupil.getName().toLowerCase().contains(searchPupil.toLowerCase())) {
+                searchedPupil.add(pupil);
+            }
+        }
+
+        return searchedPupil;
     }
 
     public void addMockData() {
@@ -64,6 +80,4 @@ public class School {
         pupilsList.add(p5);
 
     }
-
-
 }
