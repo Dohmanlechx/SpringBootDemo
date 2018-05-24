@@ -3,10 +3,10 @@ package com.example.demo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class School {
 
@@ -15,7 +15,18 @@ public class School {
     public School() {
         pupilsList = new ArrayList<>();
 
-        addMockData();
+        readFromTextFile();
+    }
+
+    public void readFromTextFile() {
+        try {
+            Scanner scanner = new Scanner(new FileReader("storage.txt"));
+            String str = scanner.next();
+
+            System.out.println(str);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Pupil> getPupilsList() {
@@ -124,7 +135,7 @@ public class School {
             }
             writer.println(pupilArray.toString());
             writer.close();
-            
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
