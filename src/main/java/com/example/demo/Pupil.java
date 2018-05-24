@@ -56,13 +56,13 @@ public class Pupil {
         grades.add(grade);
     }
 
-    public String convertToJson(Pupil pupil) {
+    public JSONObject convertToJson() {
         JSONObject json = new JSONObject();
         try {
-            json.put("id", pupil.getId());
-            json.put("name", pupil.getName());
-            json.put("gender", pupil.getGender());
-            json.put("age", pupil.getAge());
+            json.put("id", this.getId());
+            json.put("name", this.getName());
+            json.put("gender", this.getGender());
+            json.put("age", this.getAge());
 
             JSONObject jsonGrade;
 
@@ -78,8 +78,7 @@ public class Pupil {
             e.printStackTrace();
         }
 
-        String jsonStr = json.toString();
-        return jsonStr;
+        return json;
     }
 }
 

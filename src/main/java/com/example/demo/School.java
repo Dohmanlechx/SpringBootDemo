@@ -14,6 +14,7 @@ public class School {
 
     public School() {
         pupilsList = new ArrayList<>();
+
         addMockData();
     }
 
@@ -116,10 +117,14 @@ public class School {
         try {
             PrintWriter writer = new PrintWriter(fileName);
 
+            JSONArray pupilArray = new JSONArray();
+
             for (Pupil pupil : pupilsList) {
-                writer.println(pupil.convertToJson(pupil));
+                pupilArray.put(pupil.convertToJson());
             }
+            writer.println(pupilArray.toString());
             writer.close();
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
