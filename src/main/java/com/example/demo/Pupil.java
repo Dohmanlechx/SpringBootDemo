@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Pupil {
@@ -52,8 +56,28 @@ public class Pupil {
         grades.add(grade);
     }
 
-    public String convertToJson() {
+    public String convertToJson(Pupil pupil) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("id", pupil.getId());
+            json.put("name", pupil.getName());
+            json.put("gender", pupil.getGender());
+            json.put("age", pupil.getAge());
 
+            for (Grade grade : grades) {
+                System.out.println(grade.getSubject());
+                JSONObject jsonGrade;
+                jsonGrade = grade.convertToJson();
+                json.put("grades", jsonGrade);
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String jsonStr = json.toString();
+        return jsonStr;
     }
 }
 

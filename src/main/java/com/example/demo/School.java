@@ -112,18 +112,12 @@ public class School {
         // Creating a text file for the permanent storing
         String fileName = "storage.txt";
 
-//        StringBuilder pupilInfo = new StringBuilder();
-//
-//        for (Pupil pupil : pupilsList) {
-//            pupilInfo.append("id: " + pupil.getId()).append("\n name: ").append(pupil.getName())
-//                            .append("\n gender: ").append(pupil.getGender()).append("\ n age: ")
-//                            .append(String.valueOf(pupil.getAge())).append("\n ");
-//        }
-
-
         try {
             PrintWriter writer = new PrintWriter(fileName);
-            writer.println(pupilsList.toString());
+            for (Pupil pupil : pupilsList) {
+                writer.println(pupil.convertToJson(pupil));
+            }
+//            writer.println(pupilsList.toString());
             writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
