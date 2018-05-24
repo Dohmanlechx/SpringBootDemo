@@ -115,9 +115,8 @@ public class School {
 
         try {
             PrintWriter writer = new PrintWriter(fileName);
-//            JSONArray pupilArray = new JSONArray();
-            for (Pupil pupil : pupilsList) {
 
+            for (Pupil pupil : pupilsList) {
                 writer.println(pupil.convertToJson(pupil));
             }
             writer.close();
