@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONArray;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -114,10 +115,11 @@ public class School {
 
         try {
             PrintWriter writer = new PrintWriter(fileName);
+//            JSONArray pupilArray = new JSONArray();
             for (Pupil pupil : pupilsList) {
+
                 writer.println(pupil.convertToJson(pupil));
             }
-//            writer.println(pupilsList.toString());
             writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

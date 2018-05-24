@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,13 +65,16 @@ public class Pupil {
             json.put("gender", pupil.getGender());
             json.put("age", pupil.getAge());
 
+            JSONObject jsonGrade;
+
+            JSONArray jsonArrayGrades = new JSONArray();
             for (Grade grade : grades) {
                 System.out.println(grade.getSubject());
-                JSONObject jsonGrade;
                 jsonGrade = grade.convertToJson();
-                json.put("grades", jsonGrade);
+                jsonArrayGrades.put(jsonGrade);
             }
 
+            json.put("grades", jsonArrayGrades);
 
         } catch (JSONException e) {
             e.printStackTrace();
