@@ -1,9 +1,10 @@
 package com.example.demo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,18 +16,39 @@ public class School {
     public School() {
         pupilsList = new ArrayList<>();
 
+//        addMockData();
         readFromTextFile();
     }
 
-    public void readFromTextFile() {
+    //TODO Får NoSuchElementException när jag försöker läsa in och skapa Pupil-objekt från textfilen storage.txt
+    private void readFromTextFile() {
         try {
-            Scanner scanner = new Scanner(new FileReader("storage.txt"));
-            String str = scanner.next();
+            Scanner input = new Scanner(new FileReader("storage.txt"));
+            input.useDelimiter("-|\n");
 
-            System.out.println(str);
+            Pupil[] pupils = new Pupil[0];
+            while (input.hasNext()) {
+                String gender = input.next();
+                String name = input.next();
+                int id = input.nextInt();
+                int age = input.nextInt();
+
+                Pupil newPupil = new Pupil(id, name, gender, age);
+                pupils = addPupil(pupils, newPupil);
+            }
+//            String str = input.next();
+//            System.out.println(str);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Pupil[] addPupil(Pupil[] pupils, Pupil pupilToAdd) {
+        Pupil[] newPupils = new Pupil[pupils.length + 1];
+        System.arraycopy(pupils, 0, newPupils, 0, pupils.length);
+        newPupils[newPupils.length - 1] = pupilToAdd;
+
+        return newPupils;
     }
 
     public List<Pupil> getPupilsList() {
