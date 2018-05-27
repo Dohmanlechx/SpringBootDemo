@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -12,33 +14,13 @@ public class School {
     private List<Pupil> pupilsList;
 
     public School() {
-//        pupilsList = new ArrayList<>();
-
+        //TODO, NEVER RUN THIS CODE! ONLY FOR DEVELOPER!
 //        addMockData();
-//        readFromTextFile();
     }
 
     public List<Pupil> getPupilsList() {
         return pupilsList;
     }
-
-    // Pre-written codes for the grades
-
-    // Svenska
-    private static final Grade svIG = new Grade("Svenska", "IG");
-    private static final Grade svG = new Grade("Svenska", "G");
-    private static final Grade svVG = new Grade("Svenska", "VG");
-    private static final Grade svMVG = new Grade("Svenska", "MVG");
-    // Matematik
-    private static final Grade maIG = new Grade("Matematik", "IG");
-    private static final Grade maG = new Grade("Matematik", "G");
-    private static final Grade maVG = new Grade("Matematik", "VG");
-    private static final Grade maMVG = new Grade("Matematik", "MVG");
-    // Engelska
-    private static final Grade engIG = new Grade("Engelska", "IG");
-    private static final Grade engG = new Grade("Engelska", "G");
-    private static final Grade engVG = new Grade("Engelska", "VG");
-    private static final Grade engMVG = new Grade("Engelska", "MVG");
 
     public List<Pupil> getSearchedPupilsList(String searchPupil) {
         if (searchPupil == "") {
@@ -79,6 +61,24 @@ public class School {
 
     public void addMockData() {
 
+        // Pre-written codes for the grades
+
+        // Svenska
+        final Grade svIG = new Grade("Svenska", "IG");
+        final Grade svG = new Grade("Svenska", "G");
+        final Grade svVG = new Grade("Svenska", "VG");
+        final Grade svMVG = new Grade("Svenska", "MVG");
+        // Matematik
+        final Grade maIG = new Grade("Matematik", "IG");
+        final Grade maG = new Grade("Matematik", "G");
+        final Grade maVG = new Grade("Matematik", "VG");
+        final Grade maMVG = new Grade("Matematik", "MVG");
+        // Engelska
+        final Grade engIG = new Grade("Engelska", "IG");
+        final Grade engG = new Grade("Engelska", "G");
+        final Grade engVG = new Grade("Engelska", "VG");
+        final Grade engMVG = new Grade("Engelska", "MVG");
+
         // List of pupils
 
         Pupil p1 = new Pupil(100, "David", "Pojke", 12);
@@ -117,15 +117,19 @@ public class School {
         try {
             PrintWriter writer = new PrintWriter(fileName);
 
+            JSONObject pupilsList = new JSONObject();
             JSONArray pupilArray = new JSONArray();
 
-            for (Pupil pupil : pupilsList) {
+            for (Pupil pupil : getPupilsList()) {
                 pupilArray.put(pupil.convertToJson());
             }
-            writer.println(pupilArray.toString());
+            pupilsList.put("pupilsList", pupilArray);
+            writer.println(pupilsList.toString());
             writer.close();
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
