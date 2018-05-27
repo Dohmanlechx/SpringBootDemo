@@ -1,21 +1,26 @@
 package com.example.demo;
 
+import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.util.List;
 
 @RestController
 public class SchoolController {
 
-    School school = new School();
+    School school;
 
     // GET
     @RequestMapping(value = "/pupils", method = RequestMethod.GET)
     public List<Pupil> pupils(@RequestParam(value = "searchpupil", defaultValue = "") String searchPupil) {
-        return school.getSearchedPupilsList(searchPupil);
+        readFromTextFile();
+//        return school.getSearchedPupilsList(searchPupil);
+        return school.getPupilsList();
     }
 
     // GET BY ID
@@ -37,6 +42,16 @@ public class SchoolController {
     public void deletePupil(@PathVariable("id") int pupilId) {
         school.deletePupil(pupilId);
         realTimeStorage();
+    }
+
+    private void readFromTextFile() {
+        try {
+            Reader reader = new FileReader("storage.txt");
+            Gson gson = new Gson();
+            school = gson.fromJson(reader, School.class);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public final void realTimeStorage() {
