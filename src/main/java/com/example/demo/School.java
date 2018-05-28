@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class School {
@@ -52,9 +53,10 @@ public class School {
     }
 
     public void deletePupil(int pupilId) {
-        for (Pupil pupil : pupilsList) {
+        for (Iterator<Pupil> it = pupilsList.iterator(); it.hasNext();) {
+            Pupil pupil = it.next();
             if (pupil.getId() == pupilId) {
-                pupilsList.remove(pupil);
+                it.remove();
             }
         }
     }
