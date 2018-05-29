@@ -1,11 +1,14 @@
 package com.example.demo;
 
+import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,8 +18,22 @@ public class School {
     private List<Pupil> pupilsList;
 
     public School() {
+       // readFromTextFile();
         //TODO, NEVER RUN THIS CODE! ONLY FOR DEVELOPER!
 //        addMockData();
+    }
+
+    private void readFromTextFile() {
+        try {
+            Reader reader = new FileReader("storage.txt");
+            Gson gson = new Gson();
+//            Type listType = new TypeToken<List<Pupil>>() {}.getType();
+
+            gson.fromJson(reader, School.class);
+           // pupilsList = gson.fromJson(reader, School.class).getPupilsList();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Pupil> getPupilsList() {

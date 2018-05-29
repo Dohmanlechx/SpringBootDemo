@@ -15,26 +15,26 @@ import java.util.List;
 @RestController
 public class SchoolController {
 
-    School school;
+    School school;//= new School();
 
     // GET
     @RequestMapping(value = "/pupils", method = RequestMethod.GET)
     public List<Pupil> pupils(@RequestParam(value = "searchpupil", defaultValue = "") String searchPupil) {
-        readFromTextFile();
+        //readFromTextFile();
         return school.getSearchedPupilsList(searchPupil);
     }
 
     // GET BY ID
     @RequestMapping(value = "/pupils/{id}", method = RequestMethod.GET)
     public Pupil findPupil(@PathVariable("id") int pupilId) {
-        readFromTextFile();
+//        readFromTextFile();
         return school.findPupil(pupilId);
     }
 
     // POST
     @RequestMapping(value = "/pupils", method = RequestMethod.POST)
     public Pupil postPupil(@RequestBody Pupil pupil) {
-        readFromTextFile();
+//        readFromTextFile();
         school.addPupil(pupil);
         realTimeStorage();
         return pupil;
@@ -43,12 +43,12 @@ public class SchoolController {
     // DELETE
     @RequestMapping(value = "/pupils/{id}", method = RequestMethod.DELETE)
     public void deletePupil(@PathVariable("id") int pupilId) {
-        readFromTextFile();
+//        readFromTextFile();
         school.deletePupil(pupilId);
         realTimeStorage();
     }
 
-    private void readFromTextFile() {
+    public void readFromTextFile() {
         try {
             Reader reader = new FileReader("storage.txt");
             Gson gson = new Gson();
